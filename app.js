@@ -4,8 +4,16 @@ const app = express();
 
 const router = require("./routes/index");
 
+//Setup CORS
+const cors = require("cors");
+const corsOptions = {
+  origin: process.env.CORS_ALLOWED_ORIGIN,
+  optionsSuccessStatus: 200,
+};
+
 //Set up middleware
 app.use(express.json());
+app.use(cors(corsOptions));
 app.use("/", router);
 
 // Set up mongoose connection
@@ -18,5 +26,5 @@ async function main() {
 }
 
 app.listen(process.env.PORT, () =>
-  console.log(`App alive: http://localhost:${process.env.PORT}/`)
+  console.log(`App alive at http://localhost:${process.env.PORT}/`)
 );
