@@ -1,18 +1,21 @@
 require("dotenv/config");
 const express = require("express");
+const router = require("./routes/index");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
+//Setup app
 const app = express();
 
-const router = require("./routes/index");
-
 //Setup CORS
-const cors = require("cors");
 const corsOptions = {
   origin: process.env.CORS_ALLOWED_ORIGIN,
   optionsSuccessStatus: 200,
 };
 
 //Set up middleware
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cors(corsOptions));
 app.use("/", router);
 

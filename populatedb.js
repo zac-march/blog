@@ -33,9 +33,6 @@ async function main() {
   mongoose.connection.close();
 }
 
-// We pass the index to the ...Create functions so that, for example,
-// genre[0] will always be the Fantasy genre, regardless of the order
-// in which the elements of promise.all's argument complete.
 async function commentCreate(index, body, dateAdded, user, post) {
   const comment = new Comment({ body, dateAdded, user, post });
   await comment.save();

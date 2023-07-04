@@ -25,7 +25,7 @@ router.get("/posts", postController.post_list);
 
 /// COMMENT ROUTES ///
 
-// GET request for creating comment. NOTE This must come before route for id (i.e. display comment).
+// GET request for creating comment.
 router.post(
   "/post/:postId/comment/create",
   commentController.comment_create_post
